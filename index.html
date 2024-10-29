@@ -1,429 +1,157 @@
-<!-- Paste this code into Blogger -> Layout -> HTML/Javascript widget -->
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<base target="_top">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>leaflet-map-simple</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
 
-	<!-- <title>Quick Start - Leaflet</title> -->
+  <!-- Load Leaflet code library: see https://leafletjs.com/download.html -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+  <!-- Position the map and title with Cascading Style Sheet (CSS) -->
+  <style>
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+    #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }
+    
+    .leaflet-zoom-anim
+    .leaflet-zoom-animated {
+      transition-timing-function: linear;
+      transition-duration: 100ms;
+    }
+ 
+    img {
+      width: 500px;
+    }
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    .legend {
+      line-height: 18px;
+      color: #555;
+    }
 
-    <!-- Load Stamen maps -->
-    <script type="text/javascript" src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js?v1.3.0"></script>
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
 
-    <!-- Load JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <!-- Load Leaflet -->
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-
-    <!-- Load EasyButton (after Leaflet) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
-
-    <!-- # in the style section denotes a div definition -->
-
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-		.leaflet-container {
-			width: 100%;
-			max-width: 100%;
-			max-height: 100%;
-            border: 1px solid black;
-            z-index: 0;
-		}
-        .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
-        .legend { text-align: left; line-height: 14px; color: #555; } .legend i { width: 30px; height: 14px; float: left; margin-right: 8px; opacity: 0.7; }</style>
-
-	</style>
+  </style>
 </head>
-
 <body>
 
-<div id="map" style="width: 100%; height: 400px;"></div>
-<div id="autocomplete" style="z-index: 100; margin-bottom: 5px;"></div>
+  <!-- Display the map and title with HTML division tags  -->
+  <div id="map-title">Earthquake Insights Posts</div>
+  <div id="map"></div>
 
-<!-- Map script -->
-<script>
+  <!-- Create the interactive map content with JavaScript (.js) -->
+  <script>
 
-    var myblogregions
-    var info = L.control();
+  /* Set up the initial map center and zoom level */
+  var map = L.map('map', {
+    center: [0, 0], // EDIT coordinates to re-center map
+    zoom: 2,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
+    scrollWheelZoom: true,
+    zoomSnap: .1,
+    // Faster debounce time while zooming
+    wheelDebounceTime: 100
+  });
 
-    var home=[17,22];
+  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
+  L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://osm.org/copyright">\
+        OpenStreetMap</a> contributors, &copy;\
+        <a href="https://carto.com/attribution">CARTO</a>'
+  }).addTo(map);
 
-    <!-- Define some functions -->
+  // Open a local GeoJSON file containing marker information
 
+  // var eqi_data = $.ajax({
+  //   url: "./eqi_info.geojson",
+  //   dataType: "json",
+  //   success: console.log("Data successfully loaded."),
+  //   error: function(xhr) {
+  //       alert(`eqi_info: ${xhr.statusText}`);
+  //   }
+  // });
 
-    <!-- Load GeoJSON data from remote URL using Ajax -->
-    // Add AJAX request for data
-
-    /* DATA REQUESTS */
-
-    var blogregions = $.ajax({
-        url: "https://raw.githubusercontent.com/judithhubbard/blogmap/master/blogregions.geojson",
-        dataType: "json",
-        success: console.log("Region data successfully loaded."),
-        error: function(xhr) {
-            alert(`blogregions: ${xhr.statusText}`);
-        }
-    });
-
-    // function cat(json) { //get categories of blog & sort them
-    //     var label = json.feed.category;
-    //     var lst=[];
-    //     for (i=0; i<label.length; i++){
-    //       lst[i] = label[i].term ;  
-    //     }
-    //     alert(lst);  //use any sort if you need that 
-    // }
-
-    function getColor(d) {
-        return d > 20 ? '#BD0026' :
-            d > 5  ? '#FD8D3C' :
-            d > 1   ? '#FED976' :
-            d > 0   ? '#FFEDA0' :
-                      '#FFFFFF';
-    }
-
-    function getRandomInt(max) {
-      return Math.floor(Math.random() * max);
-    }
-
-    // Sets the style of each feature (country outline)
-
-    function setStyle(feature) {
-        // console.log("tags " + feature.properties.NAME + " are a " + feature.properties.numtags);
-
-        var labelNum;
-
-        feature.properties.numtags=getRandomInt(10);
-        // TAG field will have the form "/t/this-tag-name"; use NAME for now
-        feature.properties.url="https://earthquakeinsights.substack.com" + feature.properties.NAME
-
-        // console.log($(".list-label-widget-content a"))
-
-        // Loop through the loaded dataset and count how many entries have the same NAME as feature.properties.NAME
-
-        // $(".list-label-widget-content a").each(function (i, el) {        
-          
-        //     // el is the current element in the foreach loop
-
-        //     // console.log("comparing" + $(el).text() + "to" + feature.properties.NAME);
-        //     // textify the label
-        //     labelText_t = String($(el).text());
-        //     labelNum=Number(labelText_t.match(/\d+/g)); 
-        //     var labelText_a=labelText_t.match(/[a-zA-Z]+/g);
-        //     var labelText=labelText_a.toString().replace(/,/g, " ");
-        //     // console.log("Comparing " + feature.properties.NAME + " with " + labelText);
-
-        //     // Update the feature.properties.numtags value with the number of labels
-        //     if (labelText == feature.properties.NAME) {
-        //         // console.log("Country" + feature.properties.NAME + "has" + labelNum + "tags");
-        //         feature.properties.numtags=labelNum;
-        //     }
-
-        // });
-
-        return {
-            fillColor: getColor(feature.properties.numtags),
-            weight: 1,
-            // opacity: 1,
-            color: 'gray',
-            fillOpacity: 1
-        };
-    }
-
-    function highlightFeature(e) {
-        const layer = e.target;
-
-        layer.setStyle({
-            weight: 3,
-            fillOpacity: 0.5
-        });
-
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
-        }
-
-        // console.log(layer);
-        info.update(layer);
-    }
-
-    function resetHighlight(e) {
-        const layer = e.target;
-
-        layer.setStyle({
-            weight: 1,
-            fillOpacity: 1
-        });
-    }
-
-    // Load the generalized country borders
-    var countryregions = $.ajax({
-        url: "https://raw.githubusercontent.com/kyleedwardbradley/earthquake_insights_map/main/countries_tm2.geojson",
-        dataType: "json",
-        success: console.log("Country data successfully loaded."),
-        error: function(xhr) {
-            alert(`countries: ${xhr.statusText}`);
-        }
-    });
-
-    var url=window.location.href;
-
-    let domain = url;
-    if (url.includes("://")) {
-        domain = url.split('://')[1];
-    }
-    var subdomain = domain.split('.')[0];
-
-    // var bloggerdata = $.ajax({
-    //     url: "https://tectoplot.blogspot.com/feeds/posts/default?alt=json&max-results=0",
-    //     dataType: "json",
-    //     success: console.log("Blogger data successfully loaded"),
-    //     error: function(xhr) {
-    //         alert(`bloggerdata: ${xhr.statusText}`);
-    //     }
-    // });
-
-
-    /* when().done() SECTION*/
-    // Add the variable for each of your AJAX requests to $.when()
-    $.when(blogregions, countryregions).done(function() {
-      // $.when(blogregions, countryregions, bloggerdata).done(function() {
-
-        // check on the tag data now
-        console.log("after data");
-        console.log($(".list-label-widget-content a")[1]);
-
-        var map = L.map("map", {
-            zoomSnap : 1,
-            minZoom : 2
-        }).setView(home, 2);
-
-        // var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	    //     maxZoom: 19,
-	    //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        // }).addTo(map);
-
-      
-        // Google Map Layer
-
-        // var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
-        //     maxZoom: 20,
-        //     subdomains:['mt0','mt1','mt2','mt3']
-        // });
-        // googleStreets.addTo(map);
-
-        // // Satellite Layer
-        // var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-        //     maxZoom: 20,
-        //     subdomains:['mt0','mt1','mt2','mt3']
-        // });
-        // googleSat.addTo(map);
-
-        // var Stamen_Terrain = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg', {
-        //    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        //    subdomains: 'abcd',
-        //    minZoom: 1,
-        //    maxZoom: 16,
-        //    ext: 'jpg'
-        // });
-        // Stamen_Terrain.addTo(map);
-
-        // var baseLayers = {
-        //     "OpenStreetMap": osm,
-        //     "Google Satellite":googleSat,
-        //     "Google Map":googleStreets,
-        //     "Stamen Terrain" : Stamen_Terrain
-        // };
-
-        // L.control.layers(baseLayers).addTo(map);
-
-
-        // cat(bloggerdata.responseJSON);
-
-        // var labelText = {};
-        
-        // $(".list-label-widget-content a").each(function (i, el) {
-        //     labelText[i] = $(el).text();
-        //     console.log(Number(labelText[i].match(/\d+/g))); 
-        //     console.log(labelText[i].match(/[a-zA-Z]+/g));
-        // });
-
-        // Add requested external GeoJSON to map
-        var mycountryregions;
-        mycountryregions = L.geoJSON(countryregions.responseJSON, {
-            // fillOpacity: 0,
-            // color: 'green',
-            // weight: 0,
-            style: setStyle,
-            onEachFeature: function(feature, featureLayer) {
-                
-                var labelText;
-                var labelNum;
-
-                feature.properties.numtags=getRandomInt(10);
-
-                feature.properties.url="https://earthquakeinsights.substack.com/t/" + feature.properties.NAME
-
-                // console.log($(".list-label-widget-content a"))
-
-                // $(".list-label-widget-content a").each(function (i, el) {
-                //     // console.log("comparing" + $(el).text() + "to" + feature.properties.NAME);
-                //     labelText_t = String($(el).text());
-                //     labelNum=Number(labelText_t.match(/\d+/g)); 
-                //     var labelText_a=labelText_t.match(/[a-zA-Z]+/g);
-                //     var labelText=labelText_a.toString().replace(/,/g, " ");
-                //     // console.log("Comparing " + feature.properties.NAME + " with " + labelText);
-
-                //     // Update the feature.properties.numtags value with the number of labels
-                //     if (labelText == feature.properties.NAME) {
-                //         // console.log("Country" + feature.properties.NAME + "has" + labelNum + "tags");
-                //         feature.properties.numtags=labelNum;
-                //     }
-
-                // });
-                
-                featureLayer.on({
-                    mouseover: highlightFeature,
-                    mouseout: resetHighlight,
-                });
-
-                // console.log("url is " + feature.properties.url + " and href is " + window.location.href);
-                if (window.location.href == feature.properties.url) {
-                    console.log("URL matches with country " + feature.properties.NAME);
-                    map.fitBounds(featureLayer.getBounds());
-                }
-                // ' target="_blank" +
-
-                // featureLayer.bindPopup('<a href="' + feature.properties.url + '"' + '>' +  'Go to ' + feature.properties.title + '</a>');
-                // featureLayer.bindTooltip(feature.properties.NAME).openTooltip();
-            }
-        }).addTo(map).on('click', function (e) {
-            // console.log(e)
-            // console.log(e.layer)
-            if (e.layer.feature.properties.numtags != 0) {
-                window.location.href="https://earthquakeinsights.substack.com/t/" + e.layer.feature.properties.NAME;
-            }
-        });
-
-        // var cartoDB_Labels = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png', {
-        //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        //     subdomains: 'abcd',
-        //     transparent: true,
-        //     maxZoom: 5
-        // }).addTo(map);
-
-        // var myblogregions;
-        // myblogregions = L.geoJSON(blogregions.responseJSON, {
-        //     fillOpacity: 0,
-        //     color: 'blue',
-        //     weight: 1.5,
-        //     onEachFeature: function(feature, featureLayer) {
-        //         // ' target="_blank" +
-
-        //         // featureLayer.bindPopup('<a href="' + feature.properties.url + '"' + '>' +  'Go to ' + feature.properties.title + '</a>');
-        //         featureLayer.bindTooltip(feature.properties.title).openTooltip();
-        //         if (window.location.href == feature.properties.url) {
-        //             console.log("URL matches with ID " + feature.properties.id);
-        //             map.fitBounds(featureLayer.getBounds());
-        //         }
-        //     }
-        // }).addTo(map).on('click', function (e) {
-        //     console.log(e);
-        //     console.log(e.layer.feature);
-        //     console.log(e.layer.feature.properties);
-        //     window.location.href=e.layer.feature.properties.url;
-        // });
-
-
-        L.easyButton('fa-globe', function(btn, map){
-            map.setView(home, 2);
-        }).addTo(map);
-
-        L.easyButton('fa-home', function(btn, map){
-            window.location.href="https://earthquakeinsights.substack.com/"
-        }).addTo(map);
-
-
-        var resetcountrystyles = function () {
-            mycountryregions.setStyle(setStyle);
+  const sizeTranslator = {
+         "small" : 8,
+         "medium" : 12,
+         "large" : 16,
         };
 
-        info.onAdd = function (map) {
-            this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-            this.update();
-            return this._div;
-        };
+  const paidTranslator = {
+    "free" : '#0FBF35',
+    "paid" : '#F9C603',
+    "always" : '#E995EE',
+  };
 
-        // method that we will use to update the control based on feature properties passed
-        info.update = function (props) {
-            // console.log(props);
-            this._div.innerHTML = (props ?
-                '<b>' + props.feature.properties.NAME + '</b><br />' + props.feature.properties.numtags + ( props.feature.properties.numtags == 1 ? ' post - click to read' : ' posts' + ( props.feature.properties.numtags == 0 ? ' (working on it!)' : ' - click to read') )
-                : '');
-        };
+  function get_options(feature) {
+      var opts = {
+      radius: sizeTranslator[feature.properties.size],
+      fillColor: paidTranslator[feature.properties.status],
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+    };
+    return opts
+  }
 
-        info.addTo(map);
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'eqi_info.geojson');
+  xhr.setRequestHeader('Content-Type', 'application/json', 'Cache-Control', 'no-cache');
 
-        var legend = L.control({position: 'bottomright'});
+  xhr.responseType = 'json';
+  xhr.onload = function() {
+      if (xhr.status !== 200) return
+      L.geoJSON(xhr.response, {
+          pointToLayer: function (feature, latlng) {
+              // console.log(feature)
+              return L.circleMarker(latlng, get_options(feature))
+              .bindTooltip('<img src="images/' + feature.properties.url + '.png"</img>');;
+          }
+      }).addTo(map);
+  };
+  xhr.send();
 
-        legend.onAdd = function (map) {
+  function getColor(d) {
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+}
 
-            var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 1, 5, 20],
-                labels = [];
-            div.innerHTML += '<h4>Posts</h4>'
-            // loop through our density intervals and generate a label with a colored square for each interval
-            for (var i = 0; i < grades.length; i++) {
-                if (i==0) {
-                    div.innerHTML += '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' + grades[i + 1] + '<br>'; 
-                } else if (i == grades.length-1) {
-                    div.innerHTML += 
-                    '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-                } else {
-                    div.innerHTML += 
-                    '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-                    (grades[i] + 1) + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-                }
-            }
+  var legend = L.control({position: 'bottomright'});
 
-            return div;
-        };
+  legend.onAdd = function (map) {
 
-        legend.addTo(map);
-        
-        // Update the country styles as we have updated the numtags property after first styling
-       
-        function waitForElement() {
-            if (typeof $(".list-label-widget-content a")[1] !== "undefined") {
-                console.log("Resetting map")
-                console.log($(".list-label-widget-content a")[1])
-                map.whenReady(resetcountrystyles);
-            } else{
-                console.log("Waiting")
-                setTimeout(waitForElement, 250);
-            }
-        }
+      var div = L.DomUtil.create('div', 'info legend'),
+          grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+          labels = [];
 
-        waitForElement();
+      // loop through our density intervals and generate a label with a colored square for each interval
+      for (var i = 0; i < grades.length; i++) {
+          div.innerHTML +=
+              '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+              grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+      }
 
-    });
+      return div;
+  };
 
-</script>
+  legend.addTo(map);
 
-
+ 
+  </script>
 </body>
-
 </html>
