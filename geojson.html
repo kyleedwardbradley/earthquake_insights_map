@@ -281,12 +281,12 @@
 							console.log(feature.properties.uid)
 
 						// If the marker is a Sketchfab model 
-							marker.bindTooltip('<center><p><b>3D Model: </b>' + feature.properties.title + '</p><img src="../images/' + feature.properties.uid + '.png"></img></center>', { className: "popup" });
-							marker.bindPopup('<center><p><b>3D Model: </b>' + feature.properties.title + '</p><a href="https://kyleedwardbradley.github.io/3d-geo-viewer/viewer.html?uid=' + feature.properties.uid + '" target="_blank" rel="noopener noreferrer"><img src="../images/' + feature.properties.uid + '.png"></img></a></center>', { className: "popup" });
+							marker.bindTooltip('<center><p><b>3D Model: </b>' + feature.properties.title + '</p><img src="../docs/images/' + feature.properties.uid + '.png"></img></center>', { className: "popup" });
+							marker.bindPopup('<center><p><b>3D Model: </b>' + feature.properties.title + '</p><a href="https://kyleedwardbradley.github.io/3d-geo-viewer/viewer.html?uid=' + feature.properties.uid + '" target="_blank" rel="noopener noreferrer"><img src="../docs/images/' + feature.properties.uid + '.png"></img></a></center>', { className: "popup" });
 							marker.addTo(model3dgroup);
 						} else {
-							marker.bindTooltip('<center><p>' + datestr + '</p><img src="../images/' + feature.properties.url + '.png"></img></center>', { className: "popup" });
-							marker.bindPopup('<center><p>' + datestr + '</p><a href="https://earthquakeinsights.substack.com/p/' + feature.properties.url + '.html" target="_blank" rel="noopener noreferrer"><img src="../images/' + feature.properties.url + '.png"></img></a></center>', { className: "popup" });
+							marker.bindTooltip('<center><p>' + datestr + '</p><img src="../docs/images/' + feature.properties.url + '.png"></img></center>', { className: "popup" });
+							marker.bindPopup('<center><p>' + datestr + '</p><a href="https://earthquakeinsights.substack.com/p/' + feature.properties.url + '.html" target="_blank" rel="noopener noreferrer"><img src="../docs/images/' + feature.properties.url + '.png"></img></a></center>', { className: "popup" });
 							if (feature.properties.status == "always") {
 								marker.addTo(freegroup)
 							} else {
