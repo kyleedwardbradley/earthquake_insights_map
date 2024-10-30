@@ -14,22 +14,22 @@ Post data are stored in a GeoJSON file, "posts_final.geojson" in the root folder
 ```
 {
 "type": "FeatureCollection",
-	"features": [
-  {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [-117.07,36.6]
+    "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-117.07,36.6]
+      },
+      "properties": {
+        "size": "large",                 <---- ignored
+        "date": "2024-10-25T00:00:00",   <---- ISO8601 time
+        "url": "none",                   <---- Substack post url for post point, "none" for 3D model point
+        "status": "paid",                <---- we only use this when it says "always" 
+        "uid": "47e49522f2a04306af0d411f95c09e04",   <---- Sketchfab model UID
+        "title": "Earthquakes in Death Valley"   <---- Title for 3D model point
+      }
     },
-    "properties": {
-      "size": "large",                 <---- ignored
-      "date": "2024-10-25T00:00:00",   <---- ISO8601 time
-      "url": "none",                   <---- Substack post url for post point, "none" for 3D model point
-      "status": "paid",                <---- we only use this when it says "always" 
-      "uid": "47e49522f2a04306af0d411f95c09e04",   <---- Sketchfab model UID
-      "title": "Earthquakes in Death Valley"   <---- Title for 3D model point
-    }
-  },
   ... more posts go here
   ]
   }
