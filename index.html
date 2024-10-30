@@ -252,20 +252,9 @@
 				console.log('no deal')
 				return
 			}
-			// L.geoJSON(xhr.response, {
-			// 	pointToLayer: function (feature, latlng) {
-			// 		// console.log(feature)
-			// 		return L.circleMarker(latlng, get_options(feature))
-			// 		.bindTooltip('<img src="images/' + feature.properties.url + '.png"</img>');;
-			// 	}
-			// }).addTo(map);
+			
 			geoJsonData = xhr.response
 			console.log(geoJsonData)
-			// var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			// 	maxZoom: 12,
-			// 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			// });
-
 
 			var tiles = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{z}/{y}/{x}', {
 				maxZoom: 8,
@@ -300,9 +289,6 @@
 
 			});
 					
-
-/////////////
-
 			var mcg = L.markerClusterGroup( { maxClusterRadius: 10 } ),
 				freegroup = L.featureGroup.subGroup(mcg),
 				paidgroup = L.featureGroup.subGroup(mcg),
@@ -316,9 +302,6 @@
 			control.addOverlay(paidgroup, 'Archive');
 			control.addOverlay(model3dgroup, '3D models');
 			control.addTo(map);
-
-		/////////////
-
 
 			var geoJsonLayer = L.geoJson(geoJsonData, {
 				onEachFeature: function (feature, layer) {
@@ -357,17 +340,6 @@
 			model3dgroup.addTo(map);
 			
 			map.setView([0, 0], 2);
-
-
-			// Set-up buttons.
-
-			// document.getElementById("add").addEventListener("click", function () {
-			// map.addLayer(mcg);
-			// });
-
-			// document.getElementById("remove").addEventListener("click", function () {
-			// map.removeLayer(mcg);
-			// });
 
 			// custom zoom bar control that includes a Zoom Home function
 			L.Control.zoomHome = L.Control.extend({
@@ -476,9 +448,6 @@
 		// send the HTTP request for data
 		xhr.send();
 
-
-
-
-	</script>
+</script>
 </body>
 </html>
