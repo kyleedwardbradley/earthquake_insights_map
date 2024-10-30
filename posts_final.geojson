@@ -201,7 +201,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [48.5164,15.5527]
+			"coordinates": [35.3,37]
 		},
 		"properties": {
 			"size": "large",
