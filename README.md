@@ -11,6 +11,7 @@ The Free vs. Paid status of posts is calculated to match our one-month paywall.
 
 Post data are stored in a GeoJSON file, "posts_final.geojson" in the root folder with the following format:
 
+```
 {
 "type": "FeatureCollection",
 	"features": [
@@ -33,7 +34,7 @@ Post data are stored in a GeoJSON file, "posts_final.geojson" in the root folder
   ]
   }
 }
- 
+```
 
 
 Kyle Bradley, Earthquake Insights 2024
