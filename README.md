@@ -1,13 +1,15 @@
 This is an interactive Leaflet map showing geotagged posts and 3D models for the [Earthquake Insights](https://earthquakeinsights.substack.com/) Substack.
 
 Website: [here
-](https://kyleedwardbradley.github.io/earthquake_insights_map/)
+](https://kyleedwardbradley.github.io/earthquake_insights_map/map.html)
 
 Technical details:
 
-The URL of our specific Substack is hard-coded. Change this if you fork your own copy.
+The map is in ./map.html
 
-The Free vs. Paid status of posts is calculated to match our one-month paywall. 
+The URL of our specific Substack is hard-coded in map.html. Change this if you fork your own copy.
+
+The Free vs. Paid status of posts is calculated in the JS code to match our one-month paywall. 
 
 Post data are stored in a GeoJSON file, "posts_final.geojson" in the root folder with the following format:
 

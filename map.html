@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- <link rel="stylesheet" href="screen.css" /> -->
+	<link rel="stylesheet" href="screen.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link href="dist/leaflet-markercluster-list.css" rel="stylesheet" />
 	<link rel="stylesheet" href="dist/MarkerCluster.css" />
@@ -251,6 +251,8 @@
 			if (xhr.status !== 200) {
 				console.log('no deal')
 				return
+			} else {
+				console.log('got data')
 			}
 			
 			geoJsonData = xhr.response
@@ -440,7 +442,6 @@
 				return div;
 			};
 
-
 			legend.addTo(map);
 
 		};
@@ -448,6 +449,6 @@
 		// send the HTTP request for data
 		xhr.send();
 
-</script>
+	</script>
 </body>
 </html>
