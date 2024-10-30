@@ -19,7 +19,7 @@ Post data are stored in a GeoJSON file, "posts_final.geojson" in the root folder
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [-117.07,36.6]
+        "coordinates": [-117.07,36.6]    <---- longitude, latitude
       },
       "properties": {
         "size": "large",                 <---- ignored
