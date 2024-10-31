@@ -72,10 +72,6 @@ gawk < posts.csv -F, '($3=="true"){print $1 "\t" $2}' | cut -c11-1000 | gawk -F 
 # Substack archive each time a post is added.
 
 gawk -F, '
-    BEGIN {
-        printf("{\n\"type\": \"FeatureCollection\",\n\t\"features\": [\n");
-        first=1
-    }
     (ARGIND==1) {
         found[$1]=1
         lon[$1]=$2
@@ -104,7 +100,7 @@ gawk -F, '
         printf("\t\t}\n")
         printf("\t}")
     }
-    ' url_coords.csv >> posts.geojson
+    ' new_url_coords.csv >> posts.geojson
 
 
 
@@ -144,4 +140,4 @@ gawk < 3d_models.csv -F, '
 
 cat posts.geojson 3dmodels.geojson > posts_final.geojson
 
-rm -f posts.geojson 3dmodels.geojson posts_pre.csv
+# rm -f posts.geojson 3dmodels.geojson posts_pre.csv
