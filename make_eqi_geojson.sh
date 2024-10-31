@@ -68,6 +68,46 @@ gawk < posts.csv -F, '($3=="true"){print $1 "\t" $2}' | cut -c11-1000 | gawk -F 
     }
     ' url_coords.csv posts_pre.csv > posts.geojson
 
+# This is a new list of URLs that arent in posts.csv, so we don't have to re-download our
+# Substack archive each time a post is added.
+
+gawk -F, '
+    BEGIN {
+        printf("{\n\"type\": \"FeatureCollection\",\n\t\"features\": [\n");
+        first=1
+    }
+    (ARGIND==1) {
+        found[$1]=1
+        lon[$1]=$2
+        lat[$1]=$3
+        mag[$1]=$4
+        status[$1]=$5
+    
+        printf(",\n\t{\n")
+        printf("\t\t\"type\": \"Feature\",\n")
+        printf("\t\t\"geometry\": {\n")
+        printf("\t\t\t\"type\": \"Point\",\n")
+        printf("\t\t\t\"coordinates\": [" lon[$1]+0 "," lat[$1]+0 "]\n")
+        printf("\t\t},\n")
+        printf("\t\t\"properties\": {\n")
+        printf("\t\t\t\"size\": \"large\",\n")
+        printf("\t\t\t\"date\": \"" $2 "\",\n")
+        printf("\t\t\t\"url\": \"" $1 "\",\n")
+        if (status[$1] == "always") {
+            printf("\t\t\t\"status\": \"always\",\n")
+        } else {
+            printf("\t\t\t\"status\": \"paid\",\n")
+        }
+        # printf("\t\t\t\"status\": \"none\",\n")
+        printf("\t\t\t\"uid\": \"none\",\n")
+        printf("\t\t\t\"mag\": \"" mag[$1]+0 "\"\n")
+        printf("\t\t}\n")
+        printf("\t}")
+    }
+    ' url_coords.csv >> posts.geojson
+
+
+
 gawk < 3d_models.csv -F, '
     # BEGIN {
     #     printf(",{\n\"type\": \"FeatureCollection\",\n\t\"features\": [\n");
