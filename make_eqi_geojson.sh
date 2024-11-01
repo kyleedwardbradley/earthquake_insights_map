@@ -74,10 +74,11 @@ gawk < posts.csv -F, '($3=="true"){print $1 "\t" $2}' | cut -c11-1000 | gawk -F 
 gawk -F, '
     (ARGIND==1) {
         found[$1]=1
-        lon[$1]=$2
-        lat[$1]=$3
-        mag[$1]=$4
-        status[$1]=$5
+        date[$1]=$2
+        lon[$1]=$3
+        lat[$1]=$4
+        mag[$1]=$5
+        status[$1]=$6
     
         printf(",\n\t{\n")
         printf("\t\t\"type\": \"Feature\",\n")
@@ -87,14 +88,13 @@ gawk -F, '
         printf("\t\t},\n")
         printf("\t\t\"properties\": {\n")
         printf("\t\t\t\"size\": \"large\",\n")
-        printf("\t\t\t\"date\": \"" $2 "\",\n")
+        printf("\t\t\t\"date\": \"" date[$1] "\",\n")
         printf("\t\t\t\"url\": \"" $1 "\",\n")
         if (status[$1] == "always") {
             printf("\t\t\t\"status\": \"always\",\n")
         } else {
             printf("\t\t\t\"status\": \"paid\",\n")
         }
-        # printf("\t\t\t\"status\": \"none\",\n")
         printf("\t\t\t\"uid\": \"none\",\n")
         printf("\t\t\t\"mag\": \"" mag[$1]+0 "\"\n")
         printf("\t\t}\n")
@@ -105,9 +105,6 @@ gawk -F, '
 
 
 gawk < 3d_models.csv -F, '
-    # BEGIN {
-    #     printf(",{\n\"type\": \"FeatureCollection\",\n\t\"features\": [\n");
-    # }
     {
         if (NR!=1) {
             printf(",\n")
