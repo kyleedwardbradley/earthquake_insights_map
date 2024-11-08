@@ -137,4 +137,4 @@ gawk < 3d_models.csv -F, '
 
 cat posts.geojson 3dmodels.geojson > posts_final.geojson
 
-# rm -f posts.geojson 3dmodels.geojson posts_pre.csv
+rm -f posts.geojson 3dmodels.geojson posts_pre.csv
