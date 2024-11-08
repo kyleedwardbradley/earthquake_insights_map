@@ -3561,6 +3561,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [-76.1693,-46.786]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2024-11-08T11:38:00",
+			"url": "mw62-offshore-of-southern-chile",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6.2"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
