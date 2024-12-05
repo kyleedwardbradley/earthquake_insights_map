@@ -3591,6 +3591,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [49.583,31.7]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2024-12-05T04:02:39.84",
+			"url": "m56-earthquake-strikes-the-zagros",
+			"status": "paid",
+			"uid": "none",
+			"mag": "5.6"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
