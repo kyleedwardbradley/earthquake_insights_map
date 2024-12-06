@@ -3606,6 +3606,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [-125.02,40.37]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2024-12-05T18:44:21",
+			"url": "magnitude-70-earthquake-strikes-offshore",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
