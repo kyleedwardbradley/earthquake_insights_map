@@ -3621,6 +3621,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [-177.338,50.952]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2024-12-08T14:57:08",
+			"url": "numerous-m5-6-earthquakes-offshore",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6.3"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
