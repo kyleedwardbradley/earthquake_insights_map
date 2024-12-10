@@ -3636,6 +3636,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [-119.007,39.225]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2024-12-09T23:08:30",
+			"url": "mw58-earthquake-shakes-western-nevada",
+			"status": "paid",
+			"uid": "none",
+			"mag": "5.8"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
