@@ -3651,6 +3651,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [168.13,-17.6696]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2024-12-17T01:47:27",
+			"url": "deadly-mw73-earthquake-shakes-vanuatu",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7.3"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
