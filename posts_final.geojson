@@ -3666,6 +3666,51 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [40,9]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-01-02T01:01:01",
+			"url": "seismic-swarm-rattles-ethiopia",
+			"status": "paid",
+			"uid": "none",
+			"mag": "5"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [87.47,28.56]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-01-07T01:05:17",
+			"url": "deadly-m71-earthquake-strikes-tibet",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7.1"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [0,0]
+		},
+		"properties": {
+			"size": "large",
+			"date": "",
+			"url": "",
+			"status": "paid",
+			"uid": "none",
+			"mag": "0"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
