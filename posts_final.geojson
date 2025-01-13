@@ -3312,7 +3312,7 @@
 			"size": "large",
 			"date": "2024-08-08T18:56:54.130Z",
 			"url": "m71-earthquake-strikes-southern-japan",
-			"status": "paid",
+			"status": "always",
 			"uid": "none",
 			"mag": "7.1"
 		}
@@ -3696,15 +3696,15 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [0,0]
+			"coordinates": [131.723,31.7382]
 		},
 		"properties": {
 			"size": "large",
-			"date": "",
-			"url": "",
+			"date": "2024-08-08T07:42:55",
+			"url": "m68-earthquake-shakes-kyushu-japan",
 			"status": "paid",
 			"uid": "none",
-			"mag": "0"
+			"mag": "7"
 		}
 	},
 	{
