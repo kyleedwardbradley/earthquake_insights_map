@@ -3726,6 +3726,66 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [-8.193,71.197]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-03-10T01:01:01",
+			"url": "m65-earthquake-strikes-remote-norwegian",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6.5"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [104.036,43.391]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-03-22T01:01:01",
+			"url": "moderate-m51-earthquake-in-mongolia",
+			"status": "paid",
+			"uid": "none",
+			"mag": "5.1"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [165.933,-46.708]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-03-25T01:01:01",
+			"url": "m68-earthquake-rattles-new-zealands",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6.7"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [95.922,22.013]
+		},
+		"properties": {
+			"size": "large",
+			"date": "025-03-28T01:01:01",
+			"url": "catastrophic-m77-earthquake-caused",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7.7"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
