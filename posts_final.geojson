@@ -3786,6 +3786,66 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [95.922,22.013]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-03-30T01:01:01",
+			"url": "updates-on-the-m77-myanmar-earthquake",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [95.922,22.013]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-04-01T01:01:01",
+			"url": "surface-ruptures-of-the-myanmar-m77",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [95.922,22.013]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-04-03T01:01:01",
+			"url": "further-thoughts-about-the-very-long",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-116.569,33.048]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-04-14T01:01:01",
+			"url": "magnitude-52-earthquake-rattles-san",
+			"status": "paid",
+			"uid": "none",
+			"mag": "5.2"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
