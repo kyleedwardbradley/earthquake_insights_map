@@ -3861,6 +3861,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [155.677,-54.327]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-04-29T14:53:35",
+			"url": "m62-and-68-earthquakes-southwest",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6.8"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
