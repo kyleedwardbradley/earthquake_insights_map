@@ -3876,6 +3876,201 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [160.324,52.512]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-08-08T01:01:01",
+			"url": "updates-on-the-kamchatka-earthquake",
+			"status": "paid",
+			"uid": "none",
+			"mag": "8.8"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [160.324,52.512]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-07-30T01:01:01",
+			"url": "a-first-look-at-the-mw88-kamchatka",
+			"status": "paid",
+			"uid": "none",
+			"mag": "8.8"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [160.324,52.512]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-07-29T01:01:01",
+			"url": "m88-earthquake-strikes-offshore-kamchatka",
+			"status": "paid",
+			"uid": "none",
+			"mag": "8.8"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [160.791,52.827]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-07-20T01:01:01",
+			"url": "m74-earthquake-strikes-the-kamchatka",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7.4"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-160.467,54.566]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-07-17T01:01:01",
+			"url": "magnitude-73-earthquake-in-the-shumagin",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7.3"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [131.222,-6.222]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-07-15T01:01:01",
+			"url": "m67-strike-slip-earthquake-strikes",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6.7"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [129.3,29.3]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-07-02T01:01:01",
+			"url": "earthquake-swarm-rattles-the-japanese",
+			"status": "paid",
+			"uid": "none",
+			"mag": "5.6"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-73.125,4.485]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-06-08T01:01:01",
+			"url": "m63-earthquake-shakes-colombia",
+			"status": "paid",
+			"uid": "none",
+			"mag": "6.3"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [96.035,20.882]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-05-28T01:01:01",
+			"url": "remarkable-video-captures-fault-slip",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7.7"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-83.987,35.545]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-05-10T01:01:01",
+			"url": "m41-earthquake-rattles-tennessee",
+			"status": "paid",
+			"uid": "none",
+			"mag": "4.1"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-104.458,31.647]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-05-05T01:01:01",
+			"url": "earthquakes-in-west-texas",
+			"status": "paid",
+			"uid": "none",
+			"mag": "5.4"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-68.102,-56.809]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-05-03T01:01:01",
+			"url": "unusual-m74-earthquake-strikes-south",
+			"status": "paid",
+			"uid": "none",
+			"mag": "7.4"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-111.304,40.317]
+		},
+		"properties": {
+			"size": "large",
+			"date": "2025-05-01T01:01:01",
+			"url": "magnitude-41-earthquake-shakes-salt",
+			"status": "paid",
+			"uid": "none",
+			"mag": "4.1"
+		}
+	},
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [-119.1,35.0]
 		},
 		"properties": {
